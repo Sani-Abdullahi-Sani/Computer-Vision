@@ -1,0 +1,83 @@
+# Reconnaissance Blind Chess (RBC) Project
+# Puzzle Piece Segmentation and Classification: Image Processing Lab
+For this lab, we dove deep into various image processing tasks, primarily focused on puzzle piece segmentation and classification, using a variety of computer vision and statistical techniques.
+
+Project Overview
+In this project, we implemented a robust handcrafted feature engineering pipeline designed to extract informative features from images for the classification task. The features were carefully selected to capture both color and edge information, which are crucial for distinguishing between foreground (puzzle pieces) and background pixels.
+
+1. Introduction: Meet Tino
+You’ll be helping Quarantino ("Tino") solve puzzles more efficiently by building a system that will eventually help him assemble puzzles. The first step involves segmentation of the puzzle pieces from the background.
+
+2. Data and Libraries
+You’re provided with three images and their corresponding masks. The masks contain labels indicating which pixels belong to the puzzle pieces and which belong to the background.
+
+Libraries you will need for this lab:
+OpenCV (cv2)
+NumPy (np)
+SciPy (scipy.stats)
+Scikit-Image (skimage)
+ImageIO (imageio)
+mpmath
+Matplotlib (plt)
+Seaborn (sns)
+Python Image Library (PIL)
+3. Reading and Displaying Images
+You’ll begin by loading the provided images and masks. After reading the images using OpenCV (cv2), you will:
+
+Swap the image channels from BGR (OpenCV default) to RGB.
+Convert the images to grayscale using skimage.color.rgb2gray.
+Convert the images to HSV color space using skimage.color.rgb2hsv.
+You’ll visualize these images using plt.imshow() to observe any color anomalies or differences when switching between color spaces.
+
+4. Descriptive Statistics
+For image-35, you’ll perform several analyses to gather insights into the image and mask properties:
+
+Width and height: Extract the dimensions of the image.
+White pixels: Count the number of white pixels in the mask, indicating puzzle piece pixels.
+Grayscale analysis: Calculate statistics on the grayscale version of the image:
+Maximum pixel value (for the entire image and just the puzzle pixels).
+Mean and variance for puzzle piece and background pixels.
+You will also visualize histograms for the red, green, blue, and grayscale channels using the seaborn library, both for the image and the mask. Additionally, you will use Kernel Density Estimates (KDE) to smooth these histograms.
+
+5. Background Classifier
+This is where the core task begins—building a classifier to distinguish between background and puzzle pixels.
+
+Key Tasks:
+Convolution Function: Implement a custom convolution function that applies a filter/kernel to an image. Compare the results with OpenCV's cv2.filter2D function.
+
+Feature Extraction: Extract 15 features for each pixel, including RGB, HSV values, and results from applying Prewitt and Laplacian filters.
+
+Bayes' Rule Classifier: Calculate the mean and covariance matrix for these features and use Bayes' rule to classify pixels as foreground (puzzle) or background.
+
+Classifier Evaluation:
+You'll train the classifier on the training image and calculate various metrics:
+
+Accuracy
+Precision
+Recall
+F1 Score
+In addition, you'll plot the ROC curve and investigate how adjusting the probability threshold affects performance.
+
+Intersection-over-Union (IoU): Calculate the IoU score to measure the model's segmentation performance.
+Feature Selection:
+Try different sets of features and determine which set gives the best performance on the validation image. Once you have selected the best feature set, apply the model to the test image and compute the final performance metrics.
+
+6. Handcrafted Feature Engineering
+We developed a comprehensive feature engineering pipeline, focusing on both color and edge-based features:
+
+RGB Color Features: Extracted raw pixel intensity values for Red, Green, and Blue channels.
+HSV Color Features: Converted images into the HSV color space to capture color nuances.
+Prewitt Filters: Applied vertical and horizontal Prewitt filters for edge detection across RGB channels.
+Laplacian Filter: Applied the Laplacian filter for additional edge detection on the RGB channels.
+Feature Sets:
+Feature Set 1: Vertical/Horizontal Prewitt filters (RGB), Laplacian filter (RGB), and HSV color features.
+Feature Set 2: RGB and HSV color features only.
+Feature Set 3: RGB color features, HSV color features, and vertical Prewitt filters.
+By experimenting with these feature sets, we were able to assess how the different combinations of color and edge features impacted the model's performance.
+
+7. Deliverable
+Your final deliverable will be a Jupyter Notebook containing:
+
+Clear, organized sections for each task.
+The code and results for each step.
+A reflection on the model’s performance, common errors, and suggestions for improvement.
