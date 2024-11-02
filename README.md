@@ -1,1 +1,1 @@
-This Repo Contain Computer Vision Labs and Projects
+This project leverages handcrafted features and advanced computer vision techniques, such as affine transformations, per-pixel feature extraction, and segmentation with deep learning, to solve puzzles by analyzing contours, shapes, and texture models.
